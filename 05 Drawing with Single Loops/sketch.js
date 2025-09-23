@@ -1,0 +1,50 @@
+// Drawing with Single Loops
+// Mr. Scott
+// Sept 23, 2025 
+// 
+
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+}
+
+
+
+
+function draw() {
+  background(220);
+  circleLine(height *0.35, 30);
+  circleLine(height/2, 50);
+  circleLine(height * 0.65, 80);
+}
+
+function cDistance(x1, y1, x2, y2 ){
+  //calculate the straightline distance
+  //between (x1, y1) and (x2, y2)
+  let a = abs(x1 - x2); 
+  let b = abs(y1 - y2); //c = sqrt(a^2 + b^2)
+  let c = sqrt(pow(a,2) + pow(b,2));
+  return c.toFixed(1); //keep only 1 decimal place
+}
+
+function circleLine(y, size){
+  // use this function to draw a line of circles (loop)
+  // y → number   the height at which to draw the line
+  // size → number   diameter of the circles
+  let xStart = width * 0.1;  //10% position from the left
+  let xEnd = width * 0.9;    //90% horizontal pos from left
+
+  for(let x = xStart ; x <= xEnd ; x += size){
+    let d = cDistance(x,y,mouseX, mouseY);
+    if(d <= size/2){ //dist less than radius, IN CIRCLE
+      fill(200,200,0);
+    }
+    else fill(255);
+    circle(x, y, size);
+    textAlign(CENTER, CENTER);
+    fill(0);
+    text(d, x, y);
+  }
+}
+
+
