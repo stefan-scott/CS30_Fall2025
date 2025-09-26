@@ -2,7 +2,7 @@
 // Mr. Scott
 // Sept 26, 2025
 
-let ball;
+let ball, ball2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -14,11 +14,22 @@ function setup() {
     timeX: random(100),  timeY: random(100),
     timeOff: 0.02
   };
+
+  ball2 = {
+    x: 500,  y:200,   size: 12,
+    c: color(random(255),random(255),random(255)),
+    timeX: random(100),  timeY: random(100),
+    timeOff: 0.08
+  }
 }
 
 function draw() {
-  background(220);
+  //TRICK#1 //background(220);
+  //TRICK#2 → clear background with semi-transparent box
+  fill(255,70); //0-255   opacity: 4%
+  rect(0,0,width,height);
   moveBall(ball);
+  moveBall(ball2);
 }
 
 function moveBall(b){
@@ -35,6 +46,13 @@ function moveBall(b){
   b.timeX += b.timeOff;   b.timeY += b.timeOff;
 
   b.x += dx;     b.y += dy;
+
+  //handle any "wrap-arounds" necessary
+  if(b.x < 0) b.x += width;
+  else if(b.x > width) b.x -= width;  
+
+  if(b.y < 0) b.y += height;
+  else if (b.y > height) b.y -= height;
 
   //render the circle
   fill(b.c);
