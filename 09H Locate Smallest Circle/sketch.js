@@ -4,17 +4,29 @@
 
 let NUM_CIRCLES = 40;
 let seed;
+let squareX;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // drawCircles();
   seed = random(100);
+  squareX = width/2;
 }
 
 function draw() {
   randomSeed(seed);
   background(220);
   drawCircles();
+  square(squareX, height/2, 200);
+}
+
+function keyPressed(){
+  if (keyCode === LEFT_ARROW){
+    squareX -= 25;
+  }
+  if(keyCode === RIGHT_ARROW){
+    squareX += 25;
+  }
 }
 
 function drawCircles(){
