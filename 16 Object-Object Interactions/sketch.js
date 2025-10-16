@@ -20,13 +20,13 @@ function mousePressed(){
 }
 
 function draw() {
-  background(220);
+  background(0);
 
   //loop by item is good when we don't
   //plan on deleting objects from array
   for(let n of nodes){
     n.move();
-    n.display();
+    //n.display();
     n.connect(nodes);
   }
 
@@ -37,12 +37,14 @@ class csNode{
   //1. Constructor
   constructor(x,y){
     //properties related to position/display
-    this.x = x;  this.y = y;  this.size = 20;
+    this.x = x;  this.y = y;  this.size = 5;
     this.c = color(random(255),random(255),random(255));
 
     //properties related to movement
     this.xTime = random(10);  this.yTime = random(10);
     this.timeShift = 0.01;  this.maxSpeed = 5;
+  
+    this.connections = [];
   }
 
   //2. Class Methods
@@ -78,14 +80,13 @@ class csNode{
     stroke(this.c);
     for(let n of nodeArray){
       //this.x  this.y   n.x  n.y
-      if(n !== this){ //make sure not to compare to self
+      if(n !== this && this.connections.includes(n)===false){ //make sure not to compare to self
         let d = dist(this.x, this.y, n.x, n.y);
         if(d < reach){ //the two point ARE close...
           line(this.x, this.y, n.x, n.y);
+          n.connections.push(this);
         }
       }
     }
   }
-
-
 }
