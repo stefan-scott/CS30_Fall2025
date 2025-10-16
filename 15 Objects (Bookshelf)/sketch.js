@@ -20,7 +20,9 @@ function setup() {
     515, width * 0.3);
 
   // use a loop here to fill the array
-
+  for (let i = 0; i < 20; i++){
+    // let 
+  }
 }
 
 function draw() {
