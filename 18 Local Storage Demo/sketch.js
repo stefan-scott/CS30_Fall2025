@@ -2,6 +2,15 @@
 // Mr. Scott
 // OCt 24, 2025
 
+//1. Use array of Bouncers to 
+//   get a higher score
+
+//2. Modify class so that each
+//   Bouncer rotates around its 
+//   center...
+
+//3. Style the bouncers a bit.
+
 
 let mySquare;
 let totalBounces = 0;
@@ -10,13 +19,27 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER);
   mySquare = new Bouncer(width/2, height/2);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  if(localStorage.getItem("numBounces")===null){
+    localStorage.setItem("numBounces", 0);
+  }
+  else{ //implies a stored number of bounces
+    totalBounces = int(localStorage.getItem("numBounces"));
+  }
+}
+
+function keyPressed(){
+  print("delete");
+  localStorage.setItem("numBounces", 0);
+  totalBounces = 0;
 }
 
 function draw() {
   background(220);
   mySquare.move();
   mySquare.display();
-
+  text(totalBounces, width/2, height/2);
 }
 
 
@@ -41,11 +64,13 @@ class Bouncer{
     if(this.x < 0 || this.x > width){
       this.xSpeed *= -1;
       totalBounces++;
+      localStorage.setItem("numBounces", totalBounces);
     }
 
     if(this.y < 0 || this.y > height){
       this.ySpeed *= -1;
       totalBounces++;
+      localStorage.setItem("numBounces", totalBounces);
     }
   }
 
