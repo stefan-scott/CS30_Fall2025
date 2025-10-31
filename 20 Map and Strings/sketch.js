@@ -9,7 +9,7 @@ function preload(){
   // use this function to load the text
   // from our files
   textFile = loadStrings("assets/info.txt");
-  imgText = loadStrings("assets/image.txt");
+  imgText = loadStrings("assets/colorImage.txt");
 }
 
 function setup() {
@@ -23,7 +23,10 @@ function setup() {
   //Construct the Map of Colors
   colorMap = new Map([
     ["b", "black"],
-    ["w", color(255)]
+    ["w", color(255)],
+    ["r", "red"],
+    ["l", "brown"],
+    ["p", "purple"]
   ]);
 
   drawImage();
