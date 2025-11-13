@@ -48,11 +48,13 @@ function textImage(){
   //render an image using characters
   fill(255);
   for(let x = 0; x < width; x+=10){
-    for(let y = 0; y<height; y+=10){
-      let avg = getAvg(x,y);
-      if(avg > 200)      text("%", x, y);
-      else if(avg > 100) text("l", x, y);
-      else               text(",",x,y);
+    for(let y = 0; y < height; y+=10){
+      let avg = getAvg(x,y); //0-255
+      if(avg > 220)      text("&", x, y);
+      else if(avg > 180) text("O",x, y);
+      else if(avg > 140) text("/", x, y);
+      else if(avg > 100) text("=", x, y)
+      else if(avg > 40)  text(",",x,y);
     }
   }
 }
